@@ -4,7 +4,7 @@ mod polygon;
 mod vertex;
 
 use framebuffer::Framebuffer;
-use polygon::{draw_polygon, fill_polygon};
+use polygon::{draw_polygon, fill_polygon, fill_polygon_with_hole};
 use vertex::Vertex;
 
 use raylib::prelude::*;
@@ -52,6 +52,33 @@ fn main() {
     draw_polygon(
         &mut framebuffer,
         &polygon1,
+    );
+
+    // =========================================================
+    // POLIGONO 2
+    // =========================================================
+
+    let polygon2 = vec![
+        Vertex::new(321, 335),
+        Vertex::new(288, 286),
+        Vertex::new(339, 251),
+        Vertex::new(374, 302),
+    ];
+
+    // Relleno
+    framebuffer.set_current_color(Color::YELLOW);
+
+    fill_polygon(
+        &mut framebuffer,
+        &polygon2,
+    );
+
+    // Borde
+    framebuffer.set_current_color(Color::BLACK);
+
+    draw_polygon(
+        &mut framebuffer,
+        &polygon2,
     );
 
     // =========================================================
