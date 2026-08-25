@@ -167,7 +167,8 @@ fn main() {
     // GUARDAR RESULTADO
     // =========================================================
 
+    framebuffer.render_to_file("out.png");
     framebuffer.render_to_file("out.bmp");
 
-    println!("Imagen generada correctamente en out.bmp");
+    println!("Imagenes generadas correctamente");
 }
