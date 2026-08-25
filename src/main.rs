@@ -1,6 +1,11 @@
 mod framebuffer;
+mod line;
+mod vertex;
 
 use framebuffer::Framebuffer;
+use line::line;
+use vertex::Vertex;
+
 use raylib::prelude::*;
 
 fn main() {
@@ -14,13 +19,29 @@ fn main() {
 
     framebuffer.set_current_color(Color::RED);
 
-    framebuffer.set_pixel(100, 100);
-    framebuffer.set_pixel(101, 100);
-    framebuffer.set_pixel(102, 100);
-    framebuffer.set_pixel(103, 100);
-    framebuffer.set_pixel(104, 100);
+    line(
+        &mut framebuffer,
+        Vertex::new(100, 100),
+        Vertex::new(400, 300),
+    );
+
+    framebuffer.set_current_color(Color::BLUE);
+
+    line(
+        &mut framebuffer,
+        Vertex::new(400, 300),
+        Vertex::new(600, 100),
+    );
+
+    framebuffer.set_current_color(Color::GREEN);
+
+    line(
+        &mut framebuffer,
+        Vertex::new(600, 100),
+        Vertex::new(100, 100),
+    );
 
     framebuffer.render_to_file("out.bmp");
 
-    println!("Imagen generada correctamente.");
+    println!("Imagen generada.");
 }
