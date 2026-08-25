@@ -1,9 +1,10 @@
 mod framebuffer;
 mod line;
+mod polygon;
 mod vertex;
 
 use framebuffer::Framebuffer;
-use line::line;
+use polygon::{draw_polygon, fill_polygon};
 use vertex::Vertex;
 
 use raylib::prelude::*;
@@ -13,32 +14,30 @@ fn main() {
     let height = 600;
 
     let mut framebuffer = Framebuffer::new(width, height);
-
+    
     framebuffer.set_background_color(Color::WHITE);
     framebuffer.clear();
 
-    framebuffer.set_current_color(Color::RED);
+    let polygon3 = vec![
+        Vertex::new(377, 249),
+        Vertex::new(411, 197),
+        Vertex::new(436, 249),
+    ];
 
-    line(
-        &mut framebuffer,
-        Vertex::new(100, 100),
-        Vertex::new(400, 300),
-    );
-
+    // Primero rellenamos
     framebuffer.set_current_color(Color::BLUE);
 
-    line(
+    fill_polygon(
         &mut framebuffer,
-        Vertex::new(400, 300),
-        Vertex::new(600, 100),
+        &polygon3,
     );
 
-    framebuffer.set_current_color(Color::GREEN);
+    // Después dibujamos el borde
+    framebuffer.set_current_color(Color::BLACK);
 
-    line(
+    draw_polygon(
         &mut framebuffer,
-        Vertex::new(600, 100),
-        Vertex::new(100, 100),
+        &polygon3,
     );
 
     framebuffer.render_to_file("out.bmp");
