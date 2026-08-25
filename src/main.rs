@@ -108,6 +108,62 @@ fn main() {
     );
 
     // =========================================================
+    // POLIGONO 4
+    // =========================================================
+
+    let polygon4 = vec![
+        Vertex::new(413, 177),
+        Vertex::new(448, 159),
+        Vertex::new(502, 88),
+        Vertex::new(553, 53),
+        Vertex::new(535, 36),
+        Vertex::new(676, 37),
+        Vertex::new(660, 52),
+        Vertex::new(750, 145),
+        Vertex::new(761, 179),
+        Vertex::new(672, 192),
+        Vertex::new(659, 214),
+        Vertex::new(615, 214),
+        Vertex::new(632, 230),
+        Vertex::new(580, 230),
+        Vertex::new(597, 215),
+        Vertex::new(552, 214),
+        Vertex::new(517, 144),
+        Vertex::new(466, 180),
+    ];
+
+    // =========================================================
+    // POLIGONO 5 - AGUJERO DEL POLIGONO 4
+    // =========================================================
+
+    let polygon5 = vec![
+        Vertex::new(682, 175),
+        Vertex::new(708, 120),
+        Vertex::new(735, 148),
+        Vertex::new(739, 170),
+    ];
+
+    framebuffer.set_current_color(Color::PURPLE);
+
+    fill_polygon_with_hole(
+        &mut framebuffer,
+        &polygon4,
+        &polygon5,
+    );
+
+    framebuffer.set_current_color(Color::BLACK);
+
+    draw_polygon(
+        &mut framebuffer,
+        &polygon4,
+    );
+
+    draw_polygon(
+        &mut framebuffer,
+        &polygon5,
+    );
+
+    // =========================================================
     // GUARDAR RESULTADO
     // =========================================================
 
